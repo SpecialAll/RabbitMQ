@@ -1,0 +1,33 @@
+work1 和 work2 的执行情况是：
+
+work1：
+[1] work msg : hello0
+[1] -------done-------
+[1] work msg : hello2
+[1] -------done-------
+[1] work msg : hello4
+[1] -------done-------
+[1] work msg : hello6
+[1] -------done-------
+[1] work msg : hello8
+[1] -------done-------
+[1] work msg : hello10
+[1] -------done-------
+[1] work msg : hello12
+[1] -------done-------
+。。。
+
+work2 :
+[2] work msg : hello1
+[2]-------done-------
+[2] work msg : hello3
+[2]-------done-------
+[2] work msg : hello5
+[2]-------done-------
+[2] work msg : hello7
+[2]-------done-------
+[2] work msg : hello9
+[2]-------done-------
+
+
+所以它们两者是一个轮询模式- round-robin 模式！
