@@ -1,4 +1,4 @@
-package com.zxh.rabbitmq.workfair;
+package com.zxh.rabbitmq.routing;
 
 import com.rabbitmq.client.*;
 import com.zxh.rabbitmq.utils.ConnectionUtils;
@@ -6,23 +6,20 @@ import com.zxh.rabbitmq.utils.ConnectionUtils;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-public class Receive_Work1 {
-    private static final String QUEUE_NAME = "test_work_queue";
+public class Receive1 {
+    private static final String EXCHANGE_NAME = "test_exchange_direct";
+
+    private static  final String QUEUE_NAME = "test_queue_direct_1";
     public static void main(String[] args) throws IOException, TimeoutException {
-        //获取连接
         Connection connection = ConnectionUtils.getConnection();
 
-        //获取通道
-        final Channel channel = connection.createChannel();
+        Channel channel = connection.createChannel();
 
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
+        channel.basicQos(1);
 
-        channel.basicQos(1); //保证一次发送一个
-
-
-
-
+        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "error");
 
         //定义一个消费者
         Consumer consumer = new DefaultConsumer(channel){
@@ -38,13 +35,12 @@ public class Receive_Work1 {
                     e.printStackTrace();
                 } finally {
                     System.out.println("[1] -------done-------");
-
-                    channel.basicAck(envelope.getDeliveryTag(), false);
                 }
             }
         };
 
-        boolean autoAck = false;  //关闭消息自动应答
+        boolean autoAck = false;
         channel.basicConsume(QUEUE_NAME, autoAck, consumer);
+
     }
 }

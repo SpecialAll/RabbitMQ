@@ -13,7 +13,7 @@ public class Receive_Work2 {
         Connection connection = ConnectionUtils.getConnection();
 
         //获取通道
-        Channel channel = connection.createChannel();
+        final Channel channel = connection.createChannel();
 
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 

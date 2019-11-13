@@ -40,7 +40,7 @@ public class Receive {
 
     }
 
-    private static void oldAPI() throws IOException, TimeoutException, InterruptedException {
+   /* private static void oldAPI() throws IOException, TimeoutException, InterruptedException {
         //获取连接
         Connection connection = ConnectionUtils.getConnection();
 
@@ -58,5 +58,5 @@ public class Receive {
             String msgString = new String(delivery.getBody());
             System.out.println("receive msg : " + msgString);
         }
-    }
+    }*/
 }
