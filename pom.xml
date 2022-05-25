@@ -21,7 +21,7 @@
     </build>
 
     <properties>
-        <spring.framework.version>5.2.0.RELEASE</spring.framework.version>
+        <spring.framework.version>5.2.22.RELEASE</spring.framework.version>
     </properties>
     
     <dependencies>
